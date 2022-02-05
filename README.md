@@ -1,1 +1,1 @@
-# Chandr-X-ray-telescope-fits-image-processing
+# Chandra-X-ray-telescope-fits-image-processing
