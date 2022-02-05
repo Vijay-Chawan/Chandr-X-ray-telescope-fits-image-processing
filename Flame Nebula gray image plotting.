@@ -1,0 +1,50 @@
+from astropy.io import fits
+import matplotlib.pyplot as plt
+from astropy.visualization import make_lupton_rgb
+import pandas as pd
+
+# reading the fits file
+flame_inf_B = fits.open('flame_ir_B.fits')
+flame_inf_G = fits.open('flame_ir_G.fits')
+flame_inf_R = fits.open('flame_ir_R.fits')
+
+# reading the data from main header
+data_flame_inf_B = flame_inf_B[0].data
+data_flame_inf_G = flame_inf_G[0].data
+data_flame_inf_R = flame_inf_R[0].data
+
+# plotting the image as gray-image
+plt.imshow(data_flame_inf_B, cmap='gray')
+plt.imshow(data_flame_inf_G, cmap='gray')
+plt.imshow(data_flame_inf_R, cmap='gray')
+plt.colorbar()
+plt.show()
+
+
+""" # Multiline comment
+# The below lines of codes convert the FITS data to csv file.
+# This is done using Pandas DataFrame
+
+# conversion of numpy arrays to csv file(Dataframes), seperate files for each fits file
+data_frame_flame_inf_B = pd.DataFrame(data_flame_inf_B)
+data_frame_flame_inf_G = pd.DataFrame(data_flame_inf_G)
+data_frame_flame_inf_R = pd.DataFrame(data_flame_inf_R)
+# saving the file
+data_frame_flame_inf_B.to_csv('flame_inf_B.csv')
+data_frame_flame_inf_G.to_csv('flame_inf_G.csv')
+data_frame_flame_inf_R.to_csv('flame_inf_R.csv')
+""" # end of multiline comment
+
+""" #an another way to plot the images as one image and save the file into  one csv file
+# superposition of all grayscale images
+data_all_flame_inf = data_flame_inf_B + data_flame_inf_G + data_flame_inf_R 
+#using pandas to convert fits to dataframe
+data_all_df = pd.DataFrame(data_all_flame_inf)
+# saving the data_all_df file as csv file
+#data_all_flame_inf_df.to_csv('flame_inf.csv')
+
+# printing the net image
+plt.imshow(data_all_flame_inf, cmap='gray')
+plt.colorbar()
+plt.show()"""
+
